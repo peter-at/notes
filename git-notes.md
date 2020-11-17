@@ -1,3 +1,18 @@
+## clean local files
+```
+# show files and directories that git does not know about and plan to remove
+$ git clean -x -d -n
+```
+
+## gitignore
+```
+# show files git does not know about (.gitignore has effect)
+$ git ls-files --other
+
+# show files git are ignoring
+$ git ls-files --ignored --exclude-standard
+```
+
 ## shallow clone
 `git clone --depth 1` 
 
@@ -40,4 +55,31 @@
   changed = green
   untracked = cyan reverse
   branch = magenta
+```
+
+## clone a single branch and disable push
+
+```
+git clone --single-branch --branch rr1 https://bbgithub.dev.bloomberg.com/BCPC/chef-bcpc-prop.git rr1
+git remote set-url --push origin no_push
+```
+
+
+## pull requests manange
+```
+  515  git co -b refresh_oct
+  530  git fetch upstream pull/226/head:pr226
+  531  git fetch upstream pull/225/head:pr225
+  532  git fetch upstream pull/227/head:pr227
+  533  git branch -l
+  534  git merge pr225
+  535  git merge pr226
+  682  git fetch upstream
+  683  git cherry-pick upstream/pr/228
+
+$ grep -A3 'remote "upstream' .git/config
+[remote "upstream"]
+	url = bbgithub:BCPC/bcc-unmanaged-images
+	fetch = +refs/heads/*:refs/remotes/upstream/*
+  fetch = +refs/pull/*/head:refs/remotes/upstream/pr/*
 ```
