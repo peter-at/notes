@@ -1,3 +1,10 @@
+# git-notes
+
+## revert last commit
+```
+$ git reset HEAD^
+```
+
 ## clean local files
 ```
 # show files and directories that git does not know about and plan to remove
