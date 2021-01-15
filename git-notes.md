@@ -3,7 +3,12 @@
 ## revert last commit
 ```
 $ git reset HEAD^
+# revert and remove local changes
+$ git reset --hard HEAD^
 ```
+
+## undo add
+`git reset -- file.c`
 
 ## clean local files
 ```
@@ -18,6 +23,12 @@ $ git ls-files --other
 
 # show files git are ignoring
 $ git ls-files --ignored --exclude-standard
+```
+
+## multiple pathspec 
+```
+# ex: grep pat in entire repo ':/', not a paritcular directory ':!not_this_dir' and not headers ':!*.h'
+$ git grep pat -- ':/' ':!not_this_dir' ':!*.h'
 ```
 
 ## shallow clone
