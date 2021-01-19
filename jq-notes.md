@@ -1,28 +1,30 @@
 
-## top
+# jq-notes
 
 
-## deep select
+## recurse select
 
 ```
-cat bcc-v8-capacity.json |jq '.. | ."target"?  | select(. != null)'
+# selects all obj with key "a"
+$ echo '{"a":1} {"b":2, "nested": {"a":2}} {"c":3}' | jq '..|.a?'
+1
+null
+2
+null
+# same as recurse - jq '..|.a?' == jq 'recurse|.a?'
 ```
 
 ## reshaping element
 ```
-time os hypervisor show "rr-cloud-r036n14-w.bcc.bloomberg.com" -c aggregates -c free_ram_mb -c memory_mb -c memory_mb_used -c hypervisor_hostname -f json |jq '. | {"bccZoneAggregate":.aggregates[0], "free_ram_mb":.free_ram_mb, "bccHypervisor":.hypervisor_hostname, "memory_mb":.memory_mb, "memory_mb_used":.memory_mb_used, "memory_used_pct":(.memory_mb_used/.memory_mb)}'
+$ echo '[{"a":1, "nested": {"a":2}}, {"a":11, "nested": {"a":22}}]' | jq '.[]|{"a":.a, "b":.nested.a}'
 {
-  "bccZoneAggregate": "prod-3",
-  "free_ram_mb": 1308751,
-  "bccHypervisor": "rr-cloud-r036n14-w.bcc.bloomberg.com",
-  "memory_mb": 1546831,
-  "memory_mb_used": 238080,
-  "memory_used_pct": 0.1539146810478973
+  "a": 1,
+  "b": 2
 }
-
-real	0m3.636s
-user	0m0.958s
-sys	0m0.205s
+{
+  "a": 11,
+  "b": 22
+}
 ```
 
 ## https://lzone.de/cheat-sheet/jq
