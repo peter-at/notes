@@ -1,6 +1,11 @@
 
 # jq-notes
 
+## multiple conditions
+via and/or/not
+```
+jq '.[] | select((.volume <= 5) and .price > 10)'
+```
 
 ## recurse select
 
