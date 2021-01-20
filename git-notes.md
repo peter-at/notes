@@ -25,6 +25,13 @@ $ git ls-files --other
 $ git ls-files --ignored --exclude-standard
 ```
 
+## access token in gitconfig
+```
+[credential "https://github.../"]
+  username = token
+  helper = "!f() { echo 'password=token'; }; f"
+```
+
 ## multiple pathspec 
 ```
 # ex: grep pat in entire repo ':/', not a paritcular directory ':!not_this_dir' and not headers ':!*.h'
@@ -78,7 +85,7 @@ $ git grep pat -- ':/' ':!not_this_dir' ':!*.h'
 ## clone a single branch and disable push
 
 ```
-git clone --single-branch --branch rr1 https://bbgithub.dev.bloomberg.com/BCPC/chef-bcpc-prop.git rr1
+git clone --single-branch --branch a_branch https://github.com/user/repo.git
 git remote set-url --push origin no_push
 ```
 
@@ -97,7 +104,7 @@ git remote set-url --push origin no_push
 
 $ grep -A3 'remote "upstream' .git/config
 [remote "upstream"]
-	url = bbgithub:BCPC/bcc-unmanaged-images
+	url = <a url>
 	fetch = +refs/heads/*:refs/remotes/upstream/*
   fetch = +refs/pull/*/head:refs/remotes/upstream/pr/*
 ```
