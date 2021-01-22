@@ -16,6 +16,13 @@ $ git reset --hard HEAD^
 $ git clean -x -d -n
 ```
 
+## delete tag
+```
+$ git tag -d atag
+atag deleted
+$ git push origin :atag
+```
+
 ## gitignore
 ```
 # show files git does not know about (.gitignore has effect)
