@@ -3,15 +3,22 @@
 ## docker
 
 * get oci labels
+  ```
   local oci_labels=$(docker inspect --format='{{json .Config.Labels}}' $img \
 	  | jq -c -r 'to_entries[]|select(.key|test("opencontainers"))|[.key, .value]')
+  ```	  
 * oci label [link](https://github.com/opencontainers/image-spec/blob/master/annotations.md#pre-defined-annotation-keys) 
 
 ## cloud-init for hashicorp
 
 * official [linux repo](https://www.hashicorp.com/blog/announcing-the-hashicorp-linux-repository)
-key in `curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -`
+* key in `curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -`
 ```
+write_files:
+  - path: /etc/apt/apt.conf.d/02-hashicorp
+    content: |
+      # proxy for HashiCorp
+      Acquire::https::Proxy::apt.releases.hashicorp.com "http://proxy";
 apt:
   sources:
     hashicorp:
