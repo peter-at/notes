@@ -23,6 +23,22 @@ atag deleted
 $ git push origin :atag
 ```
 
+## create and apply patch
+```
+# create
+$ git format-patch HEAD^
+
+# apply
+$ git am ../patch-from-above
+```
+
+## switch to main
+```
+$ git fetch upstream main
+$ git co upstream/main
+$ git push -u origin/main
+```
+
 ## gitignore
 ```
 # show files git does not know about (.gitignore has effect)
