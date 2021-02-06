@@ -135,6 +135,58 @@ bind -n M-F12 set -qg status-style bg=colour40
 new-session -As def -c ${HOME}
 ```
 
+```
+
+
+# split panes with | and -
+bind | split-window -h
+bind - split-window -v
+
+# select panes with vi keys
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+# enable mouse
+set -g mouse on
+## double click and triple click copies
+### Double LMB Select & Copy (Word)
+bind-key -T copy-mode-vi DoubleClick1Pane \
+    select-pane \; \
+    send-keys -X select-word \; \
+    send-keys -X copy-pipe "xclip -in -sel primary"
+bind-key -n DoubleClick1Pane \
+    select-pane \; \
+    copy-mode -M \; \
+    send-keys -X select-word \; \
+    send-keys -X copy-pipe "xclip -in -sel primary"
+### Triple LMB Select & Copy (Line)
+bind-key -T copy-mode-vi TripleClick1Pane \
+    select-pane \; \
+    send-keys -X select-line \; \
+    send-keys -X copy-pipe "xclip -in -sel primary"
+bind-key -n TripleClick1Pane \
+    select-pane \; \
+    copy-mode -M \; \
+    send-keys -X select-line \; \
+    send-keys -X copy-pipe "xclip -in -sel primary"
+
+# window/pane index
+set -g base-index 1
+setw -g pane-base-index 1
+
+# enable vi keys
+setw -g mode-keys vi
+bind Escape copy-mode
+bind-key -T copy-mode-vi v send -X begin-selection
+bind-key -T copy-mode-vi y send -X copy-selection
+unbind p
+bind p paste-buffer
+
+
+```
+
 # links
 
 
