@@ -183,8 +183,84 @@ bind-key -T copy-mode-vi v send -X begin-selection
 bind-key -T copy-mode-vi y send -X copy-selection
 unbind p
 bind p paste-buffer
+```
 
+```
 
+# switch prefix from 'C-b' to 'C-a'
+set-option -g prefix C-a
+set-option -g prefix2 C-_
+unbind-key C-b
+bind-key C-a send-prefix
+
+# large history
+set-option -g history-limit 5000
+
+# set to be VI like
+set-window-option -g mode-keys vi
+set-option -g status-keys vi
+#... cut and paste
+#unbind-key [
+#bind-key Escape copy-mode
+#unbind-key p
+#bind-key p paste-buffer
+bind-key = choose-buffer
+bind-key [ copy-mode
+bind-key ] paste-buffer
+bind-key b copy-mode -u
+#... for splitting
+bind-key s split-window -v
+bind-key v split-window -h
+#... for switching between pane
+bind-key h select-pane -L
+bind-key j select-pane -D
+bind-key k select-pane -U
+bind-key l select-pane -R
+#... for resize pane
+bind-key < resize-pane -L 1
+bind-key > resize-pane -R 1
+#... for switching between windows
+bind-key n next-window
+bind-key p previous-window
+bind-key C-_ last-window
+
+# mouse... does not work 01/20/13 (missing mouseterm and simbl?)
+#set-option -g mode-mouse on
+#set-option -g mouse-select-pane on
+#set-option -g mouse-select-window on
+#set-window-option -g mode-mouse on
+
+# session/window and apperances
+#... set title to <session name>:<window idx> - <path>
+set-option -g set-titles on
+set-option -g set-titles-string '[#S:#I]'
+#... coloring
+set-option -g default-terminal "screen-256color" 
+set-option -g pane-active-border-fg blue
+#... numbering - set to base on keyboard layout
+set-option -g base-index 1
+set-option -g pane-base-index 1
+
+# status bar
+set-option -g status-utf8 on
+set-option -g status-bg black
+set-option -g status-fg white
+set-option -g status-justify centre
+#... left/center/right
+set-option -g status-left '#[fg=green][#[bg=black,fg=cyan]#S#[fg=green]]'
+set-option -g status-left-length 20
+set-window-option -g automatic-rename on
+set-window-option -g window-status-format \
+    '#[fg=cyan,dim]#I#[fg=blue]:#[default]#W#[fg=grey,dim]#F'
+set-window-option -g window-status-current-format \
+    '#[bg=blue,fg=cyan,bold]#I#[bg=blue,fg=cyan]:#[fg=colour230]#W#[fg=dim]#F'
+set-option -g status-right \
+    '#[fg=green][#[fg=blue]%Y-%m-%d #[fg=white]%H:%M#[default] #[fg=green]]'
+
+#
+# session...
+#
+source-file ~/.tmux/basic.session
 ```
 
 # links
