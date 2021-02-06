@@ -263,6 +263,90 @@ set-option -g status-right \
 source-file ~/.tmux/basic.session
 ```
 
+```
+
+# tmux.conf
+
+
+# all important prefix key and toggle logic
+# - default C-b is fine (in vim C-b == C-b C-b or C-u C-u)
+set-option -g prefix C-b
+set-option -g prefix2 None
+bind -T root F11 \
+  set prefix None \;\
+  set key-table off \;\
+  set status-style "fg=black,bg=green" \;\
+  set window-status-current-format "#I:#W" \;\
+  set window-status-current-style "fg=white,bold,bg=green" \;\
+  if -F '#{pane_in_mode}' 'send-keys -X cancel' \;\
+  refresh-client -S
+
+bind -T off F11 \
+  set -u prefix \;\
+  set -u key-table \;\
+  set -u status-style \;\
+  set -u window-status-current-style \;\
+  set -u window-status-current-format \;\
+  refresh-client -S
+
+# status line
+set-option -g status on
+set-option -g status-style bg=black,fg=white
+set-option -g status-position top
+set-option -g status-left "[#S] "
+set-option -g status-left-length 10
+set-option -g status-right "#[fg=green]#H"
+set-option -g window-status-current-style "bg=colour236"
+set-option -g status-interval 45
+
+# window/pane index
+set-option -g base-index 1
+set-option -g pane-base-index 1
+
+
+# split panes with | and -
+bind-key | split-window -h
+bind-key - split-window -v
+
+# select panes with vi keys
+bind-key h select-pane -L
+bind-key j select-pane -D
+bind-key k select-pane -U
+bind-key l select-pane -R
+
+# enable mouse
+set -g mouse on
+## double click and triple click copies
+### Double LMB Select & Copy (Word)
+bind-key -T copy-mode-vi DoubleClick1Pane \
+    select-pane \; \
+    send-keys -X select-word \; \
+    send-keys -X copy-pipe "xclip -in -sel primary"
+bind-key -n DoubleClick1Pane \
+    select-pane \; \
+    copy-mode -M \; \
+    send-keys -X select-word \; \
+    send-keys -X copy-pipe "xclip -in -sel primary"
+### Triple LMB Select & Copy (Line)
+bind-key -T copy-mode-vi TripleClick1Pane \
+    select-pane \; \
+    send-keys -X select-line \; \
+    send-keys -X copy-pipe "xclip -in -sel primary"
+bind-key -n TripleClick1Pane \
+    select-pane \; \
+    copy-mode -M \; \
+    send-keys -X select-line \; \
+    send-keys -X copy-pipe "xclip -in -sel primary"
+
+# enable vi keys
+setw -g mode-keys vi
+bind Escape copy-mode
+bind-key -T copy-mode-vi v send -X begin-selection
+bind-key -T copy-mode-vi y send -X copy-selection
+unbind p
+bind p paste-buffer
+```
+
 # links
 
 
