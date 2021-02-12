@@ -39,6 +39,12 @@ $ git co upstream/main
 $ git push -u origin/main
 ```
 
+## show branches with commit hash and description
+```
+$ git for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset):%(objectname:short) - %(contents:subject)'
+$ git config --global alias.brls "for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset):%(objectname:short) - %(contents:subject)'"
+```
+
 ## gitignore
 ```
 # show files git does not know about (.gitignore has effect)
