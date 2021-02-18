@@ -49,6 +49,10 @@ example: `--extra-vars "who=blah"`
     `$ ansible localhost -m setup`
 
 
+## infromation from host var
+ansible -i ansible/inventory.yml -m debug cloud -a "var=hostvars[inventory_hostname].var0"
+ansible -i ansible/inventory.yml -m debug cloud -a "var=hostvars[inventory_hostname].var1"
+
 ## dump variable to file
 
     ```
