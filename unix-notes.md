@@ -1,10 +1,16 @@
-# unix notes
+# unix-notes.md
+
+# distro - [link](./unix/distro.md)
+* deb based (Ubuntu/Debian) [deb-based](./unix/distro.md#deb-based)
 
 
 # text processing
 
 * print between 2 patterns - [link](./unix/awk-sed.md) 
 
+* split file of words into word-per-line
+  `tr -s '[[:punct:][:space:]]' '\n' < ll`
+  `fmt -1 < ll`
 
 # tmux
 
@@ -38,4 +44,39 @@ $ seq -f "%f" 3 0.8 6
 % seq -w 01 12 
 # count downs
 % seq 10 -1 1
+```
+
+# zsh
+
+## see function def
+```
+zsh$ whence -f foo
+foo () {
+    echo hello
+}
+
+declare -f foo  # works in zsh and bash
+
+typeset -f foo  # works in zsh, bash, and ksh
+
+type -af  # zsh only (works differently in bash and ksh)
+```
+
+## not leaking internal functions/vars
+```
+function _mkprompt() {                                                      
+  local var='%(?.%F{green}√.%F{red}?%?)%f %B%F{cyan}%1~%f%b %# '
+  echo $var
+}
+PROMPT=`_mkprompt`
+unfunction _mkprompt
+```
+or use anonymous function
+```
+function {            
+  local show_rcode="%(?.%F{green}√.%F{red}?%?)%f"
+  local show_path="%B%F{cyan}%1~%f%b"
+  local show_hist="%F{green}%!"
+  PROMPT="${show_rcode} ${show_path} ${show_hist}%# " 
+}
 ```
