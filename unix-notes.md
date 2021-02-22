@@ -4,6 +4,15 @@
 * deb based (Ubuntu/Debian) [deb-based](./unix/distro.md#deb-based)
 
 
+# shell
+* get directory of script
+```
+#!/usr/bin/env bash
+BASEDIR=$(dirname "$0")
+echo "$BASEDIR"
+```
+
+
 # text processing
 
 * print between 2 patterns - [link](./unix/awk-sed.md) 
@@ -11,6 +20,20 @@
 * split file of words into word-per-line
   `tr -s '[[:punct:][:space:]]' '\n' < ll`
   `fmt -1 < ll`
+
+## use printf
+[source 1](https://linuxize.com/post/bash-printf-command/)
+* type conversions `%[flags][width][.precision]specifier` [link](https://linuxize.com/post/bash-printf-command/#type-conversion-specifier)
+```
+# print 5 with at least 10 chars padded with 0
+% printf "%0*d\n" 10 5
+0000000005
+# use -v to assign to var
+% printf -v foo "hello"; echo $foo
+hello
+% printf "%.*f\n" 3 1.61803398
+1.618
+```
 
 # tmux
 

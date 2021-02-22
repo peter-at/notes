@@ -1,5 +1,12 @@
 # tmux
 
+# using
+
+* name window
+tmux setw -g automatic-rename on
+tmux setw -g automatic-rename-format
+tmux setw rename-window new_name
+
 
 # status bar
 
