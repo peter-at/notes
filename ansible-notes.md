@@ -83,6 +83,11 @@ ansible -i ansible/inventory.yml -m debug cloud -a "var=hostvars[inventory_hostn
 
     `ansible-playbook --inventory localhost,  create_resource.yml -e 'ansible_python_interpreter=/usr/local/bin/python3'`
 
+## developing ansible modules
+* run as main [exercise module locally](https://docs.ansible.com/ansible/latest/dev_guide/developing_modules_general.html#exercising-module-code-locally)
+  use json file with `{ "ANSIBLE_MODULE_ARGS": { "arg1": "val1" } }`
+  run it as `$ python -m ansible.modules.my_test /tmp/args.json`
+  
 ## structuring
 * A role is a collection of tasks and templates
 * A role contains several directories with `main.yml` as entry point (only tasks directory is required)
