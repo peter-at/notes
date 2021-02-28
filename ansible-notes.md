@@ -122,3 +122,30 @@ ansible -i ansible/inventory.yml -m debug cloud -a "var=hostvars[inventory_hostn
 - debug: var=test
   when: debug|default(false)|bool == true
 ```
+
+## read a file as json
+```
+- hosts: localhost
+  gather_facts: False
+  vars:
+    out: "{{ lookup('file', 'll') | from_json }}"
+```
+file lookup plugin seems to check in
+* where the tasks is defined
+* in the playbook's root directory
+* in playbook's files directory
+
+## use dict().get to fetch non-standard elements like names with hypens
+```
+  - name: get ip address of the VM
+    set_fact:
+      vmip: "{{ mpinfo.get(vmname).ipv4[0] }}"
+```
+
+## selectattr - select elements matching attribute
+return is always a `list`
+```
+  - name: show mounts
+    set_fact:
+      bb: "{{ out.list | selectattr('name', 'eq', 'base') }}"
+```
