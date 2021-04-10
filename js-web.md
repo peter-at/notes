@@ -105,3 +105,105 @@ customElements.define("time-formatted", TimeFormatted);
 setInterval(() => elem.setAttribute('datetime', new Date()), 1000); // (5)
 </script>
 ```
+
+
+## create html elements (w/shadow dom)
+
+[sourced from](https://code-boxx.com/create-custom-html-elements/)
+
+**example with child element**
+```
+class Vertical extends HTMLElement {
+  // (A) CONSTRUCTOR
+  constructor() {
+    super(); // Necessary for HTML elements...
+ 
+    // (A1) SHADOW DOM ELEMENTS
+    this._title = document.createElement('h1');
+    this._text = document.createElement('p');
+ 
+    // (A2) CSS STYLES
+    // ! Note: shadow DOM cannot be styled from external CSS !
+    // ! Either inline the styles here, or use @import !
+    this._styles = document.createElement('style');
+    this._styles.textContent = `
+    h1 {
+      color: red;
+      font-size: 2em;
+    }
+    p {
+      font-weight: bold;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+    }`;
+ 
+    // (A3) ATTACH STYLES & ELEMENTS INTO SHADOW DOM
+    this._shadow = this.attachShadow({mode: 'open'});
+    this._shadow.appendChild(this._styles);
+    this._shadow.appendChild(this._title);
+    this._shadow.appendChild(this._text);
+  }
+ 
+  // (B) LISTEN FOR ATTRIBUTES CHANGE
+  static get observedAttributes() { return ['title', 'text']; }
+  attributeChangedCallback(name, oldValue, newValue) {
+    // (B1) SET TITLE ATTRIBUTE TO SHADOW DOM _TITLE <H1> 
+    if (name=="title") { this._title.innerHTML = newValue; }
+    // (B2) SET TEXT ATTRIBUTE TO SHADOW DOM _TEXT <P> 
+    if (name=="text") { this._text.innerHTML = newValue; }
+  }
+ 
+  // (C) OPTIONAL CALLBACKS
+  // (C1) WHEN THIS CUSTOM ELEMENT IS INSERTED INTO DOM
+  connectedCallback() { console.log("Connected"); }
+  // (C2) WHEN THIS CUSTOM ELEMENT IS REMOVED FROM DOM
+  disconnectedCallback() { console.log("Disconnected"); }
+  // (C3) WHEN THIS CUSTOM ELEMENT IS ADOPTED
+  adoptedCallback() { console.log("Adopted"); }
+}
+ 
+// (D) REGISTER OUR CUSTOM HTML ELEMENT 
+// This will register to "<vertical-text>"
+// MUST have dash for custom elements, verticaltext will fail and not work
+customElements.define('vertical-text', Vertical);
+```
+
+**example using template and slots**
+```
+<!-- (A) VERTICAL TEXT BOX TEMPLATE -->
+<template id="vertemp">
+  <style>
+  h1 {
+    color: red;
+    font-size: 2em;
+  }
+  p {
+    font-weight: bold;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+  </style>
+  <h1><slot name="vert-title"></slot></h1>
+  <p><slot name="vert-text"></slot></p>
+</template>
+
+<!-- (B) JAVASCRIPT -->
+<script>
+// (B1) ADAPT TEMPLATE INTO SHADOW DOM
+class Vertical extends HTMLElement {
+  constructor() {
+    super();
+    this._shadow = this.attachShadow({mode: 'open'});
+    this._shadow.appendChild(document.getElementById("vertemp").content);
+  }
+}
+// (B2) REGISTER CUSTOM ELEMENT
+customElements.define('vertical-text', Vertical);
+</script>
+
+<!-- (C) CUSTOM VERTICAL TEXT BOX -->
+<vertical-text>
+  <span slot="vert-text">FOO BAR</span>
+  <span slot="vert-title">THE TITLE</span>
+</vertical-text>
+```
