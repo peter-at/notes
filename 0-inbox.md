@@ -349,6 +349,8 @@ bind p paste-buffer
 
 # links
 
-
+## searching github
+https://sourcegraph.com/search
+https://grep.app/
 
 
