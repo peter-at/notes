@@ -98,3 +98,22 @@ ansible -i ansible/inventory.yml -m debug cloud -a "var=hostvars[inventory_hostn
   * templates
   * files
 
+## tasks/main.yml - tag style
+3 ways:
+```
+- import_role: name=localhost tasks_from=debug
+  tags: ['never', 'debug']
+  delegate_to: localhost
+  vars:
+    echo_debug_level: False
+```
+```
+- import_tasks: debug.yml
+  become: true
+  tags: [never,debug]
+```
+```
+- import_tasks: foobar-install.yml
+  when: foobar
+```
+
