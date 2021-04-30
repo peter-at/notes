@@ -12,6 +12,22 @@ BASEDIR=$(dirname "$0")
 echo "$BASEDIR"
 ```
 
+* trim whitespaces `echo "   lol  " | xargs` can be `xargs echo` to be explicit
+
+* trim whitespace `echo -e " blah  " | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//'`
+
+* trim whitespaces using variable expansions
+```
+trim() {
+    local var="$*"
+    # remove leading whitespace characters
+    var="${var#"${var%%[![:space:]]*}"}"
+    # remove trailing whitespace characters
+    var="${var%"${var##*[![:space:]]}"}"   
+    printf '%s' "$var"
+}
+```
+
 
 # text processing
 
