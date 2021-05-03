@@ -117,3 +117,8 @@ ansible -i ansible/inventory.yml -m debug cloud -a "var=hostvars[inventory_hostn
   when: foobar
 ```
 
+## conditional - defined and true
+```
+- debug: var=test
+  when: debug|default(false)|bool == true
+```
