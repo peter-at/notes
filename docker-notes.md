@@ -16,4 +16,10 @@ $ curl -ulogin -X GET https://host/v2/imagename/tags/list > l2
   local oci_labels=$(docker inspect --format='{{json .Config.Labels}}' $img \
 	  | jq -c -r 'to_entries[]|select(.key|test("opencontainers"))|[.key, .value]')
   ```	  
-* oci label [link](https://github.com/opencontainers/image-spec/blob/master/annotations.md#pre-defined-annotation-keys) 
+* oci label [link](https://github.com/opencontainers/image-spec/blob/master/annotations.md#pre-defined-annotation-keys)
+
+## age of docker image
+```
+d1=$$(date -d $$(docker inspect -f '{{ .Created }}' imagename) +%s); d2=$$(date +%s); \
+    echo $$(( (d2 - d1) / 86400 ))
+```
