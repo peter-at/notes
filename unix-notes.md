@@ -12,6 +12,15 @@ BASEDIR=$(dirname "$0")
 echo "$BASEDIR"
 ```
 
+## exit with exit code and message
+```
+err_exit() {
+  local msg=$1
+  echo "${msg}"
+  exit ${2-1}
+}
+```
+
 * trim whitespaces `echo "   lol  " | xargs` can be `xargs echo` to be explicit
 
 * trim whitespace `echo -e " blah  " | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//'`
@@ -50,6 +59,7 @@ hello
 % printf "%.*f\n" 3 1.61803398
 1.618
 ```
+
 
 # tmux
 
