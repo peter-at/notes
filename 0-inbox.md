@@ -3,6 +3,30 @@
 
 # to be sorted
 
+## jenkins pass vars between stages
+```
+def awesomeVersion = 'UNKNOWN'
+
+pipeline {
+  agent { label 'docker' }
+  stages {
+    stage('build') {
+      steps {
+        script {
+          awesomeVersion = sh(returnStdout: true, script: 'echo 0.0.1')
+        }
+      }
+    }
+    stage('output_version') {
+      steps {
+        echo "awesomeVersion: ${awesomeVersion}"
+      }
+    }
+  }
+}
+```
+
+## tmux conf
 ```
 
 # tmux.conf
