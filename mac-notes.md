@@ -15,6 +15,18 @@ sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.mDNSResponder.p
 sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.mDNSResponder.plist
 ```
 
+## show hardware ports
+`networksetup -listallhardwareports`
+
+## find dhcp lease server addr
+```
+% ipconfig getpacket en0 |grep server_id
+server_identifier (ip): 192.168.86.3
+
+## note: enable dhcp on en0
+## sudo ipconfig set en0 DHCP
+```
+
 # daemon
 
 ## launchctl
