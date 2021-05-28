@@ -19,6 +19,9 @@
 
 ## specifying variables from cli
 
+example: remove files
+`ansible -i inventory.yml -b -m file -a "path=/file/to/remove state=absent" host`
+
 example: `--extra-vars "who=blah"`
 
     ```
