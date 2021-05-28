@@ -396,6 +396,12 @@ pipeline {
 }
 ```
 
+# mysql
+
+## show premission
+mysql> SHOW GRANTS FOR 'user'@'localhost';
+select * from mysql.user where User='user' \G;
+
 # links
 
 ## searching github
