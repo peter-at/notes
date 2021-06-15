@@ -124,4 +124,8 @@ runcmd:
   - [ /tmp/instance-entrypoint.sh]    
 ```
 
+## single run
+cloud-init single -n package_name
+
+
 ## note
