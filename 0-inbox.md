@@ -3,28 +3,7 @@
 
 # to be sorted
 
-## jenkins pass vars between stages
-```
-def awesomeVersion = 'UNKNOWN'
 
-pipeline {
-  agent { label 'docker' }
-  stages {
-    stage('build') {
-      steps {
-        script {
-          awesomeVersion = sh(returnStdout: true, script: 'echo 0.0.1')
-        }
-      }
-    }
-    stage('output_version') {
-      steps {
-        echo "awesomeVersion: ${awesomeVersion}"
-      }
-    }
-  }
-}
-```
 
 ## tmux conf
 ```
@@ -398,9 +377,17 @@ pipeline {
 
 # mysql
 
-## show premission
+## show permission
 mysql> SHOW GRANTS FOR 'user'@'localhost';
 select * from mysql.user where User='user' \G;
+
+# python
+
+## template jinjia2 vs mako
+
+[syntax compare](https://stackoverflow.com/a/3436091)
++1 jinjia2 - syntax
+
 
 # links
 
