@@ -6,7 +6,7 @@
 
   `$ ansible-playbook --inventory localhost, test.yml`
 
-* specify host and connction in yml
+* specify host and connection in yml
 
     ```
     ---
@@ -14,7 +14,7 @@
     hosts: localhost
     connection: local
     tasks:
-        - debug: msg="hellow world"
+        - debug: msg="hello world"
     ```
 
 ## specifying variables from cli
