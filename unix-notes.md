@@ -37,6 +37,19 @@ trim() {
 }
 ```
 
+## version regex
+```
+$ regex='version:\s+(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)'; \
+  echo "version: 0.1.2" \
+  | grep -E "$regex" \
+  | sed -E "s/${regex}/\1.\2.\3/"
+0.1.2
+$ regex='version:\s+(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)([-\+].*)?'; \
+  echo "version: 0.1.2-beta+123" \
+  | grep -E "$regex" \
+  | sed -E "s/${regex}/\1.\2.\3 (pre-release or build-meta)\4/"
+0.1.2 (pre-release or build-meta)-beta+123
+```
 
 # text processing
 
