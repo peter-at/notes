@@ -152,3 +152,9 @@ return is always a `list`
     set_fact:
       bb: "{{ out.list | selectattr('name', 'eq', 'base') }}"
 ```
+
+## pass arguments in ad-hoc commands
+```
+$ ansible localhost -m mod -e '{"blah":[42d569560af54ef2a5a99ddbc9a31474,9dac019c075c839ce6f089371c815dc0]}' -a 'var1=val1 val2={{blah}}'
+$ ansible localhost -m mod -e '{"blah":{"nested_dict": {"key": "val"}}}' -a 'var1=val1 val2={{blah}}'
+```
