@@ -381,6 +381,10 @@ pipeline {
 mysql> SHOW GRANTS FOR 'user'@'localhost';
 select * from mysql.user where User='user' \G;
 
+# makefile
+
+* [check defined](https://stackoverflow.com/a/10858332)
+
 # python
 
 ## template jinjia2 vs mako
