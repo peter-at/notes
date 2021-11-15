@@ -51,6 +51,15 @@ $ regex='version:\s+(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)([-\+].*)?'; \
 0.1.2 (pre-release or build-meta)-beta+123
 ```
 
+## array
+[doc ref](https://opensource.com/article/18/5/you-dont-know-bash-intro-bash-arrays)
+```
+declare -a arr
+readarray -t arr < <(cmd-that-produce-list-on-each-line \
+    | grep ^filtering \
+    | cut -f 1)
+```
+
 # text processing
 
 * print between 2 patterns - [link](./unix/awk-sed.md) 
