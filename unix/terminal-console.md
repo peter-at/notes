@@ -45,3 +45,9 @@
   done
 echo
 ```
+
+# bash array
+```bash
+# dump latest log...
+cmd > /tmp/file.$(date +%s); lsout=($(ls -t /tmp/file.*)); cat ${lsout[1]}
+```
