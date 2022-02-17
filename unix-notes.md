@@ -54,11 +54,22 @@ $ regex='version:\s+(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)([-\+].*)?'; \
 ## array
 * [doc ref](https://opensource.com/article/18/5/you-dont-know-bash-intro-bash-arrays)
 * [bunch of examples](https://tldp.org/LDP/abs/html/arrays.html)
-```
+```bash
+# read array from cmd
 declare -a arr
 readarray -t arr < <(cmd-that-produce-list-on-each-line \
     | grep ^filtering \
     | cut -f 1)
+    
+# pass array to func
+function func() {
+  local inarr=( "$@" )
+  for n in "${inarr[@]}"; do
+    echo $n
+  done
+}
+arr=( 'one' 'two' 'three')
+func "${arr[@]}"
 ```
 
 # text processing
