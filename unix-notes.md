@@ -52,8 +52,8 @@ $ regex='version:\s+(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)([-\+].*)?'; \
 ```
 
 ## array
-[doc ref](https://opensource.com/article/18/5/you-dont-know-bash-intro-bash-arrays)
-[bunch of examples](https://tldp.org/LDP/abs/html/arrays.html)
+* [doc ref](https://opensource.com/article/18/5/you-dont-know-bash-intro-bash-arrays)
+* [bunch of examples](https://tldp.org/LDP/abs/html/arrays.html)
 ```
 declare -a arr
 readarray -t arr < <(cmd-that-produce-list-on-each-line \
