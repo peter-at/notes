@@ -394,6 +394,15 @@ list-to-sh:
     @arr=( $(LIST) ); for n in "$${arr[@]}"; do echo $$n; done
 ```
 
+```
+MAKEFLAGS += --warn-undefined-variables
+SHELL := bash
+.SHELLFLAGS := -eu -o pipefail -c
+.DEFAULT_GOAL := all
+.DELETE_ON_ERROR:
+.SUFFIXES:
+```
+
 
 # python
 
