@@ -425,3 +425,14 @@ sudo netstat -tulpn | grep LISTEN
 sudo ss -tulpn | grep LISTEN
 sudo lsof -i:22 ## see a specific port such as 22 ##
 sudo nmap -sTU -O IP-address-Here
+
+# pandas
+
+## epoch to datetime
+```python
+df.assign(
+    dt=lambda x: pd.to_datetime(df.epoch_time, unit='s')
+    dt_tz=lambda x: pd.to_datetime(df.epoch_time, unit='s').dt.tz_localize('UTC').dt.tz_convert('America/New_York')
+)
+df['dt']=df['epoch_time'].apply(lambda x: dt.datetime.fromtimestamp(x))
+```
