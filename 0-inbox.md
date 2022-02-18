@@ -384,6 +384,16 @@ select * from mysql.user where User='user' \G;
 # makefile
 
 * [check defined](https://stackoverflow.com/a/10858332)
+```make
+check_defined=$(if $(value $1),,$(error Err: undefined variable: $1))
+tgt:
+  @:$(call check_defined,undef_var)
+  
+list-to-sh: LIST:=one two three
+list-to-sh:
+    @arr=( $(LIST) ); for n in "$${arr[@]}"; do echo $$n; done
+```
+
 
 # python
 
