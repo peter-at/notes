@@ -11,3 +11,6 @@ fdisk /dev/sda
 .. write new partition table
 e2fsck -f /dev/sda1
 resize2fs /dev/sda1
+
+## Create swap
+mkswap -L swap /dev/sda2
