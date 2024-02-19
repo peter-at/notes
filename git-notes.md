@@ -69,6 +69,16 @@ $ git grep pat -- ':/' ':!not_this_dir' ':!*.h'
 
 ## shallow clone
 `git clone --depth 1` 
+.. ref https://github.blog/2020-12-21-get-up-to-speed-with-partial-clone-and-shallow-clone/
+.. blob less clone
+git clone --filter=blob:none <url>
+.. tree less clone
+git clone --filter=tree:0 <url>
+.. shallow clone
+git clone --depth=1 <url>
+.. list filter matches... list of filters in man git-rev-list
+.. https://git-scm.com/docs/git-rev-list#Documentation/git-rev-list.txt---filterltfilter-specgt
+git rev-list --filter=blob --all
 
 ## .gitconfig/alias
 ```
