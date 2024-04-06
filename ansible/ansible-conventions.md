@@ -142,7 +142,7 @@
 
 # Playbooks
 
-Use roles via `import_role`:
+Use roles via static import `import_role`:
 ```
 - hosts: localhost
   gather_facts: no
@@ -150,6 +150,8 @@ Use roles via `import_role`:
   tasks:
   - import_role: name=common tasks_from=task-name
   - import_role: name=another tasks_from=another-task
+    vars:
+      role_var: 'value'
 ```
 
 # Roles
