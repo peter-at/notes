@@ -15,4 +15,15 @@ SHELL := bash
 .DEFAULT_GOAL := all
 .DELETE_ON_ERROR:
 .SUFFIXES:
+
+all: help
+  @:
+
+PHONY_TGTS := help
+PHONY_TGTS += image
+.PHONY: $(PHONY_TGTS)
+
+help:
+  @echo "**** Help ****"
+  @grep "^# make" Makefile
 ```
