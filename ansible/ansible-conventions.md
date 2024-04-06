@@ -140,6 +140,17 @@
       --and-even=more_options --like-these
   ```
 
+# Playbooks
+
+Use roles via `import_role`:
+```
+- hosts: localhost
+  gather_facts: no
+
+  tasks:
+  - import_role: name=common tasks_from=task-name
+  - import_role: name=another tasks_from=another-task
+```
 
 # Roles
 
