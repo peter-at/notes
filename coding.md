@@ -16,14 +16,18 @@ SHELL := bash
 .DELETE_ON_ERROR:
 .SUFFIXES:
 
-all: help
-  @:
+all : help ;
 
 PHONY_TGTS := help
-PHONY_TGTS += image
+PHONY_TGTS += network
 .PHONY: $(PHONY_TGTS)
 
 help:
-  @echo "**** Help ****"
-  @grep "^# make" Makefile
+	@echo "**** Help ****"
+	@grep -E "(^# make|^#\s+-)" Makefile
+
+# make example
+#    - additional help notes for example target
+example:
+  @:
 ```
