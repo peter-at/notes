@@ -4,6 +4,25 @@
 
 ## Multiple target matches
 first match is taken - [look at what.ever target](https://clarkgrubb.com/makefile-style-guide#rule-target-decl)
+```
+# content of Makefile
+cat << EOF > Makefile
+what.%:
+	echo what
+
+what.%:
+	echo what v2
+
+%.ever:
+	echo ever
+EOF
+
+# call make - first pattern that matches will be executed...  if the pattern is exactly the same, it overwrites the previous rule
+% make what.ever
+echo what v2
+what v2
+```
+
 style recommendation - use `%.extension`
 
 ## Check if varialbe is set
