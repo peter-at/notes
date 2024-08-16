@@ -1,6 +1,16 @@
 # terminal console (notes on terminal/console/unix command line)
 
-# color
+## redirection io
+https://tldp.org/LDP/abs/html/io-redirection.html
+https://web.archive.org/web/20230412163832/https://wiki.bash-hackers.org/howto/redirection_tutorial
+```
+# echo to stderr
+>&2 echo "error"
+# diff 2 commands
+diff <(ls old) <(ls new)
+```
+
+## color
 * msgcat --color=test |less -R
 * bash scripts on [github](https://github.com/pvinis/colortools)
 * bash simple loop
@@ -47,7 +57,7 @@
   ```
 
 
-# bash array
+## bash array
 
 ```bash
 # dump latest log...
