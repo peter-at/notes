@@ -1,10 +1,10 @@
 # unix-notes.md
 
-# distro - [link](./unix/distro.md)
+## distro - [link](./unix/distro.md)
 * deb based (Ubuntu/Debian) [deb-based](./unix/distro.md#deb-based)
 
 
-# shell
+## shell
 * get directory of script
 ```
 #!/usr/bin/env bash
@@ -12,7 +12,7 @@ BASEDIR=$(dirname "$0")
 echo "$BASEDIR"
 ```
 
-## exit with exit code and message
+### exit with exit code and message
 ```
 err_exit() {
   local msg=$1
@@ -37,7 +37,7 @@ trim() {
 }
 ```
 
-## version regex
+### version regex
 ```
 $ regex='version:\s+(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)'; \
   echo "version: 0.1.2" \
@@ -51,7 +51,7 @@ $ regex='version:\s+(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)([-\+].*)?'; \
 0.1.2 (pre-release or build-meta)-beta+123
 ```
 
-## array
+### array
 * [doc ref](https://opensource.com/article/18/5/you-dont-know-bash-intro-bash-arrays)
 * [bunch of examples](https://tldp.org/LDP/abs/html/arrays.html)
 ```bash
@@ -72,7 +72,7 @@ arr=( 'one' 'two' 'three')
 func "${arr[@]}"
 ```
 
-# text processing
+## text processing
 
 * print between 2 patterns - [link](./unix/awk-sed.md) 
 
@@ -80,7 +80,7 @@ func "${arr[@]}"
   `tr -s '[[:punct:][:space:]]' '\n' < ll`
   `fmt -1 < ll`
 
-## use printf
+### use printf
 [source 1](https://linuxize.com/post/bash-printf-command/)
 * type conversions `%[flags][width][.precision]specifier` [link](https://linuxize.com/post/bash-printf-command/#type-conversion-specifier)
 ```
@@ -95,25 +95,25 @@ hello
 ```
 
 
-# tmux
+## tmux
 
 * tmux - [link](./unix/tmux.md)
 
 
-# terminal
+## terminal
 
 * teminal colors - [link](./unix/terminal-console.md#colors)
 
 * LSCOLORS/LS_COLORS - https://geoff.greer.fm/2008/06/27/lscolorsls_colors-now-with-linux-support/
 
 
-# sys-admin
+## sys-admin
 
 * adduser/addgroup vs useradd/groupadd - https://unix.stackexchange.com/a/55568
   * adduser/addgroup - interactive, useradd/groupadd - scripting
 
 
-# num loops
+## num loops
 
 * bash numbers
 ```
@@ -129,9 +129,9 @@ $ seq -f "%f" 3 0.8 6
 % seq 10 -1 1
 ```
 
-# zsh
+## zsh
 
-## see function def
+### see function def
 ```
 zsh$ whence -f foo
 foo () {
@@ -145,7 +145,7 @@ typeset -f foo  # works in zsh, bash, and ksh
 type -af  # zsh only (works differently in bash and ksh)
 ```
 
-## not leaking internal functions/vars
+### not leaking internal functions/vars
 ```
 function _mkprompt() {                                                      
   local var='%(?.%F{green}√.%F{red}?%?)%f %B%F{cyan}%1~%f%b %# '
