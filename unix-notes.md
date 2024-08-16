@@ -110,7 +110,16 @@ hello
 ## sys-admin
 
 * adduser/addgroup vs useradd/groupadd - https://unix.stackexchange.com/a/55568
-  * adduser/addgroup - interactive, useradd/groupadd - scripting
+    * adduser/addgroup - interactive (perl script? calls useradd/groupadd)
+    * useradd/groupadd - scripting
+```
+# add user with uid (no homedir is created)
+useradd -u 1001 tester
+# add user with homedir
+useradd -m tester2
+# ...and matching uid/gid of 1004
+useradd -m -U --uid 1004 tester2
+```
 
 
 ## num loops
