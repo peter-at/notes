@@ -1,7 +1,11 @@
 # inbox
 
 
-# to be sorted
+## document writing
+
+- https://github.com/tindzk/thesaurus
+- https://www.writethedocs.org/guide/
+- https://docs.divio.com/documentation-system/
 
 
 
