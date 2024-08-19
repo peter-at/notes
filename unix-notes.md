@@ -121,6 +121,12 @@ useradd -m tester2
 useradd -m -U --uid 1004 tester2
 ```
 
+* dump certificate bundle
+```
+openssl storeutl -noout -text -certs "bundle.crt"
+```
+
+
 
 ## num loops
 
