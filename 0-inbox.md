@@ -430,6 +430,14 @@ sudo ss -tulpn | grep LISTEN
 sudo lsof -i:22 ## see a specific port such as 22 ##
 sudo nmap -sTU -O IP-address-Here
 
+## check port stats (sending)
+https://unix.stackexchange.com/questions/56988/how-can-i-find-which-process-sends-data-to-a-specific-port
+```
+sudo ss -tp
+# or
+sudo netstat -A inet -p | grep -v localhost
+```
+
 # pandas
 
 ## epoch to datetime

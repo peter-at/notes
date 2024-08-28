@@ -3,6 +3,14 @@
 ## distro - [link](./unix/distro.md)
 * deb based (Ubuntu/Debian) [deb-based](./unix/distro.md#deb-based)
 
+## debian packages
+```bash
+# for common utils
+apt-get install -y iputils-ping    # ping
+apt-get install -y file
+apt-get install -y procps     # ps
+apt-get install -y bind9-dnsutils    # dig
+```
 
 ## shell
 * get directory of script
