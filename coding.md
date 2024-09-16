@@ -72,6 +72,10 @@ print-% : ; $(info info: $* is a $(flavor $*) variable set to [$($*)]) @true
 ```
 BASEDIR:=$(dir $(realpath $(firstword $(MAKEFILE_LIST))))
 BASEDIR:=$(patsubst %/,%,$(BASEDIR))
+
+# or
+
+MAKEFILE_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 ```
 
 ## Share makefiles
