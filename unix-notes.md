@@ -10,6 +10,7 @@ apt-get install -y iputils-ping    # ping
 apt-get install -y file
 apt-get install -y procps     # ps
 apt-get install -y bind9-dnsutils    # dig
+apt-get install -y iproute2    # ip
 ```
 
 ## shell
