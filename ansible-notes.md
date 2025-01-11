@@ -91,6 +91,20 @@ ansible -i ansible/inventory.yml -m debug cloud -a "var=hostvars[inventory_hostn
   use json file with `{ "ANSIBLE_MODULE_ARGS": { "arg1": "val1" } }`
   run it as `$ python -m ansible.modules.my_test /tmp/args.json`
   
+* pass array or dict as module args
+```
+ANSIBLE_LIBRARY=./modules ansible -m lima_facts -e '{"arr": [ "vm_details" ]}' -a 'filter_out={{arr}}' localhost
+```
+
+* debug logs and traces use both ANSIBLE_VERBOSITY=4 ANSIBLE_DEBUG=1
+```bash
+ANSIBLE_VERBOSITY=4 ANSIBLE_DEBUG=1 ansible -m ping syn > out
+```
+will capture outputs from
+```py
+display.vvv()
+```
+
 ## structuring
 * A role is a collection of tasks and templates
 * A role contains several directories with `main.yml` as entry point (only tasks directory is required)

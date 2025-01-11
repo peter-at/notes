@@ -110,3 +110,10 @@ _img_date = $(shell docker image inspect $(1) \
 _LOC_LATEST = $(eval _LOC_LATEST := $$(call _img_date,$(IMAGE):latest))$(_LOC_LATEST)
 _REG_LATEST = $(eval _REG_LATEST := $$(call _img_date,$(REGISTRY)/$(IMAGE):latest))$(_REG_LATEST)
 ```
+
+## vscode
+
+On **cspell** :
+* don't show in 'Problems' pane
+    - `"cSpell.diagnosticLevel": "Hint"`
+    - https://stackoverflow.com/a/50322474
