@@ -111,6 +111,29 @@ _LOC_LATEST = $(eval _LOC_LATEST := $$(call _img_date,$(IMAGE):latest))$(_LOC_LA
 _REG_LATEST = $(eval _REG_LATEST := $$(call _img_date,$(REGISTRY)/$(IMAGE):latest))$(_REG_LATEST)
 ```
 
+## Makefile help comments
+* from nomad project - https://github.com/hashicorp/nomad/blob/main/GNUmakefile#L410
+```
+# cyan (\033[36m) heading that's 32chars left-aligned (%-32s)
+HELP_FORMAT="    \033[36m%-32s\033[0m %s\n"
+.PHONY: help
+help: ## Display this usage information
+	@echo "Valid targets:"
+	@grep -E '^[^ ]+:.*?## .*$$' $(MAKEFILE_LIST) | \
+		sort | \
+		awk 'BEGIN {FS = ":.*?## "}; \
+			{printf $(HELP_FORMAT), $$1, $$2}'
+	@echo ""
+	@echo "This host will build the following targets if 'make release' is invoked:"
+	@echo $(ALL_TARGETS) | sed 's/^/    /'
+```
+- w/var and dependent tgt - https://github.com/hashicorp/nomad/blob/v1.11.1/GNUmakefile#L294-L296
+```
+.PHONY: prerelease
+prerelease: GO_TAGS=ui codegen_generated release
+prerelease: generate-all ember-dist static-assets ## Generate all the static assets for a Nomad release
+```
+
 ## vscode
 
 On **cspell** :
