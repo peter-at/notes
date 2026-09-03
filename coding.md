@@ -34,7 +34,7 @@ endif
 ```
 
 ## Useful settings (top of makefile)
-top of makefile
+- top of makefile
 ```
 MAKEFLAGS += --warn-undefined-variables
 SHELL := bash
@@ -103,9 +103,9 @@ local-target:
 .. get docker image date
 ```
 ## helper template function
-_img_date = $(shell docker image inspect $(1) \                                                  
+_img_date = $(shell docker image inspect $(1) \
   | jq '.[0].Created | sub(".[0-9]+Z"; "Z")' \
-  | jq 'fromdate|strftime("%Y.%m.%d")')  
+  | jq 'fromdate|strftime("%Y.%m.%d")')
 
 _LOC_LATEST = $(eval _LOC_LATEST := $$(call _img_date,$(IMAGE):latest))$(_LOC_LATEST)
 _REG_LATEST = $(eval _REG_LATEST := $$(call _img_date,$(REGISTRY)/$(IMAGE):latest))$(_REG_LATEST)
@@ -113,6 +113,7 @@ _REG_LATEST = $(eval _REG_LATEST := $$(call _img_date,$(REGISTRY)/$(IMAGE):lates
 
 ## Makefile help comments
 * from nomad project - https://github.com/hashicorp/nomad/blob/main/GNUmakefile#L410
+- top of makefile 2
 ```
 # cyan (\033[36m) heading that's 32chars left-aligned (%-32s)
 HELP_FORMAT="    \033[36m%-32s\033[0m %s\n"
@@ -132,6 +133,18 @@ help: ## Display this usage information
 .PHONY: prerelease
 prerelease: GO_TAGS=ui codegen_generated release
 prerelease: generate-all ember-dist static-assets ## Generate all the static assets for a Nomad release
+```
+
+## Makefile template
+- top of makefile 3
+```
+.DEFAULT_GOAL := help
+.PHONY: help
+
+help: ## Show this help
+	@echo ""
+	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST) | sort
+	@echo ""
 ```
 
 ## vscode
